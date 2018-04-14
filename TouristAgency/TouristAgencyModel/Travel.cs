@@ -15,12 +15,6 @@ namespace TouristAgencyModel
         [Required]
         public string TravelName { get; set; }
 
-        public int DayCount { get; set; }
-
-        public int AdultsCount { get; set; }
-
-        public int ChildrenCount { get; set; }
-
         [Required]
         public decimal PriceTravel { get; set; }
 

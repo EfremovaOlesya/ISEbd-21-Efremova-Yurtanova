@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TouristAgencyModel
+namespace TouristAgencyService.ViewModel
 {
-   public class Order
+   public class OrderViewModel
     {
         public int Id { get; set; }
 
         public int ClientId { get; set; }
 
+        public string ClientFIO { get; set; }
+
         public int TravelId { get; set; }
 
+        public string TravelName { get; set; }
+
         public int? WorkerId { get; set; }
+
+        public string WorkerFIO { get; set; }
 
         public int Count { get; set; }
 
@@ -27,16 +32,10 @@ namespace TouristAgencyModel
 
         public int ChildrenCount { get; set; }
 
-        public PaymentState Status { get; set; }
+        public string Status { get; set; }
 
-        public DateTime DateCreate { get; set; }
+        public string DateCreate { get; set; }
 
-        public DateTime? DateImplement { get; set; }
-
-        public virtual Client Client { get; set; }   
-
-        public virtual Travel Travel { get; set; }
-
-        public virtual Worker Worker { get; set; }
+        public string DateImplement { get; set; }
     }
 }
