@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TouristAgencyModel
+namespace TouristAgencyService.BindingModel
 {
-   public class Order
+    public class OrderBindingModel
     {
         public int Id { get; set; }
 
@@ -26,17 +25,5 @@ namespace TouristAgencyModel
         public int AdultsCount { get; set; }
 
         public int ChildrenCount { get; set; }
-
-        public PaymentState Status { get; set; }
-
-        public DateTime DateCreate { get; set; }
-
-        public DateTime? DateImplement { get; set; }
-
-        public virtual Client Client { get; set; }   
-
-        public virtual Travel Travel { get; set; }
-
-        public virtual Worker Worker { get; set; }
     }
 }

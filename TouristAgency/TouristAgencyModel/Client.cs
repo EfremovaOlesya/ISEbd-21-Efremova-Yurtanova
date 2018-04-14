@@ -17,6 +17,8 @@ namespace TouristAgencyModel
 
         public decimal Bonus { get; set; }
 
+        public decimal Shtraf { get; set; }
+
         [Required]
         public string ClientLogin { get; set; }
 
