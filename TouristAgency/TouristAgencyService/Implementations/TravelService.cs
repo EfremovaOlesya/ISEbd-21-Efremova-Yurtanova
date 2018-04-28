@@ -10,7 +10,7 @@ using TouristAgencyService.ViewModel;
 
 namespace TouristAgencyService.ImplementationsList
 {
-    class TravelService : ITravelService
+    public class TravelService : ITravelService
     {
         private TouristDbContext context;
 

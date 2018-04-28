@@ -7,7 +7,7 @@ using TouristAgencyModel;
 
 namespace TouristAgencyService.BindingModel
 {
-   public class TravelBindingModel
+    public class TravelBindingModel
     {
         public int Id { get; set; }
 

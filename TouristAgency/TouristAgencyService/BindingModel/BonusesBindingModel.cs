@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TouristAgencyService.BindingModel
-{
-  public class BonusesBindingModel
+{    
+    public class BonusesBindingModel
     {
         public int ClientId { get; set; }
 

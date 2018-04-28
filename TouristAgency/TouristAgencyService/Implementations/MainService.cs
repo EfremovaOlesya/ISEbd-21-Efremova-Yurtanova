@@ -11,7 +11,7 @@ using TouristAgencyService.ViewModel;
 
 namespace TouristAgencyService.ImplementationsList
 {   
-       class MainService : IMainService
+       public class MainService : IMainService
         {
         private TouristDbContext context;
 
@@ -38,7 +38,7 @@ namespace TouristAgencyService.ImplementationsList
                                         SqlFunctions.DateName("yyyy", rec.DateImplement.Value),
                     Status = rec.Status.ToString(),
                     Count = rec.Count,
-                    Sum = rec.Sum,
+                    Summ = rec.Summ,
                     ClientFIO = rec.Client.ClientFIO,
                    TravelName = rec.Travel.TravelName,
                     WorkerFIO = rec.Worker.WorkerFIO
@@ -55,31 +55,19 @@ namespace TouristAgencyService.ImplementationsList
                 TravelId = model.TravelId,
                 DateCreate = DateTime.Now,
                 Count = model.Count,
-                Sum = model.Sum,
+                Summ = model.Summ,
                 Status = PaymentState.Не_оплачено
             });
             context.SaveChanges();
-        }       
+        }             
 
-        public void PartiallyPaid(int id)
+        public void PayOrder(OrderBindingModel model)
         {
-            Order element = context.Orders.FirstOrDefault(rec => rec.Id == id);
-            if (element == null)
-            {
-                throw new Exception("Элемент не найден");
-            }
-            element.Status = PaymentState.Оплачено_частично;
-            context.SaveChanges();
-        }
-
-        public void PayOrder(int id)
-        {
-            Order element = context.Orders.FirstOrDefault(rec => rec.Id == id);
-            if (element == null)
-            {
-                throw new Exception("Элемент не найден");
-            }
-            element.Status = PaymentState.Оплачено;
+            context.Orders.Add(new Order
+            {              
+                Summ = model.Summ,
+                Status = PaymentState.Принят
+            });                       
             context.SaveChanges();
         }
 

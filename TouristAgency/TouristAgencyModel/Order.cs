@@ -19,7 +19,7 @@ namespace TouristAgencyModel
 
         public int Count { get; set; }
 
-        public decimal Sum { get; set; }
+        public decimal Summ { get; set; }
 
         public int DayCount { get; set; }
 

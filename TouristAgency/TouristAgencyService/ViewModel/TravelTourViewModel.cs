@@ -14,6 +14,8 @@ namespace TouristAgencyService.ViewModel
 
         public int TourId { get; set; }
 
-        public int Count { get; set; }
+        public string TourName { get; set; }
+
+        public int Price { get; set; }
     }
 }
