@@ -15,8 +15,6 @@ namespace TouristAgencyModel
         [Required]
         public string TourName { get; set; }
 
-        public int TravelId { get; set; }
-
         [Required]
         public decimal PriceTour { get; set; }
 

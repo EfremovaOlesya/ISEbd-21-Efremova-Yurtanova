@@ -16,9 +16,9 @@ namespace TouristAgencyService.BindingModel
 
         public int? WorkerId { get; set; }
 
-        public int Count { get; set; }
+        public decimal Summ { get; set; }
 
-        public decimal Sum { get; set; }
+        public int Count { get; set; }
 
         public int DayCount { get; set; }
 

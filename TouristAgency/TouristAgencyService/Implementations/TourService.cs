@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using TouristAgencyModel;
 using TouristAgencyService.BindingModel;
+using TouristAgencyService.Interfaces;
 using TouristAgencyService.ViewModel;
 
 namespace TouristAgencyService.ImplementationsList
 {
-    class TourService
+    public class TourService : ITourService
     {
         private TouristDbContext context;
 

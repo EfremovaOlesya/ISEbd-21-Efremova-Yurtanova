@@ -70,9 +70,9 @@
     <Compile Include="Interfaces\ITourService.cs" />
     <Compile Include="Interfaces\ITravelService.cs" />
     <Compile Include="Interfaces\IWorkerService.cs" />
-    <Compile Include="Migrations\201803301231531_FirstMigration.cs" />
-    <Compile Include="Migrations\201803301231531_FirstMigration.Designer.cs">
-      <DependentUpon>201803301231531_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201804271037370_FirstMigration.cs" />
+    <Compile Include="Migrations\201804271037370_FirstMigration.Designer.cs">
+      <DependentUpon>201804271037370_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,11 +95,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803301231531_FirstMigration.resx">
-      <DependentUpon>201803301231531_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804271037370_FirstMigration.resx">
+      <DependentUpon>201804271037370_FirstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
