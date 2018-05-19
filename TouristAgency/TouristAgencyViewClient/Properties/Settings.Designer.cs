@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TouristAgencyViewClient.Properties
+namespace IvanAgencyViewClient.Properties
 {
 
 

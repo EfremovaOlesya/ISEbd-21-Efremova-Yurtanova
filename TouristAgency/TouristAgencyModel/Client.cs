@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TouristAgencyModel
+namespace IvanAgencyModel
 {
     public class Client
     {
@@ -15,21 +15,13 @@ namespace TouristAgencyModel
         [Required]
         public string ClientFIO { get; set; }
 
-        public decimal Bonus { get; set; }
-
-        public decimal Shtraf { get; set; }
+        [Required]
+        public string Password { get; set; }
 
         [Required]
-        public string ClientLogin { get; set; }
-
-        [Required]
-        public string ClientPassword { get; set; }
-
-        public string Block { get; set; }
+        public string Mail { get; set; }
 
         [ForeignKey("ClientId")]
         public virtual List<Order> Orders { get; set; }
-
-
     }
 }

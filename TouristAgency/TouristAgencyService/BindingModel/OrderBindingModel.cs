@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TouristAgencyService.BindingModel
+namespace IvanAgencyService.BindingModel
 {
     public class OrderBindingModel
     {
@@ -14,16 +14,10 @@ namespace TouristAgencyService.BindingModel
 
         public int TravelId { get; set; }
 
-        public int? WorkerId { get; set; }
+        public int? AdminId { get; set; }
 
-        public decimal Summ { get; set; }
+        public int Day { get; set; }
 
-        public int Count { get; set; }
-
-        public int DayCount { get; set; }
-
-        public int AdultsCount { get; set; }
-
-        public int ChildrenCount { get; set; }
+        public decimal Summa { get; set; }
     }
 }

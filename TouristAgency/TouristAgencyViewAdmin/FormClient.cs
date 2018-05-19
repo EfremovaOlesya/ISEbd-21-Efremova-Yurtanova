@@ -1,34 +1,32 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 using Unity.Attributes;
-using TouristAgencyService.Interfaces;
-using TouristAgencyService.ViewModel;
-using TouristAgencyService.BindingModel;
+using Unity;
+using IvanAgencyService.Interfaces;
+using IvanAgencyService.ViewModel;
+using IvanAgencyService.BindingModel;
 
-namespace TouristAgencyView
+namespace IvanAgencyViewAdmin
 {
-    public partial class FormClient: Form
+    public partial class FormClient : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
         public int Id { set { id = value; } }
 
-        private readonly IClientService service;
+        private readonly IClient service;
 
         private int? id;
 
-        public FormClient(IClientService service)
+        public FormClient(IClient service)
         {
             InitializeComponent();
             this.service = service;

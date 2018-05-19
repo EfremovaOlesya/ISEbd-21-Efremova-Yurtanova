@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +11,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TouristAgencyService.Interfaces;
-using TouristAgencyService.ViewModel;
-using Unity;
 using Unity.Attributes;
+using Unity;
+using IvanAgencyService.Interfaces;
+using IvanAgencyService.ViewModel;
 
-namespace TouristAgencyViewClient
+namespace IvanAgencyViewClient
 {
     /// <summary>
     /// Логика взаимодействия для FormTravels.xaml
@@ -27,9 +26,9 @@ namespace TouristAgencyViewClient
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly ITravelService service;
+        private readonly ITravel service;
 
-        public FormTravels(ITravelService service)
+        public FormTravels(ITravel service)
         {
             InitializeComponent();
             Loaded += FormTravels_Load;
@@ -56,6 +55,7 @@ namespace TouristAgencyViewClient
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.InnerException.Message);
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -93,6 +93,7 @@ namespace TouristAgencyViewClient
                     }
                     catch (Exception ex)
                     {
+                        MessageBox.Show(ex.InnerException.Message);
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     LoadData();

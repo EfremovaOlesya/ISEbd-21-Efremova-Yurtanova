@@ -1,4 +1,4 @@
-﻿namespace TouristAgencyView
+﻿namespace IvanAgencyViewAdmin
 {
     partial class FormClients
     {

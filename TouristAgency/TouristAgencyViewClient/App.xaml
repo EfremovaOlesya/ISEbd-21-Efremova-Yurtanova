@@ -1,8 +1,8 @@
-﻿<Application x:Class="TouristAgencyViewClient.App"
+﻿<Application x:Class="IvanAgencyViewClient.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TouristAgencyViewClient"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:IvanAgencyViewClient"
+             StartupUri="FormGlav.xaml">
     <Application.Resources>
          
     </Application.Resources>

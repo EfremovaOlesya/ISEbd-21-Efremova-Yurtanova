@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TouristAgencyModel
+namespace IvanAgencyModel
 {
-   public class Travel
+    public class Travel
     {
         public int Id { get; set; }
 
@@ -16,7 +16,7 @@ namespace TouristAgencyModel
         public string TravelName { get; set; }
 
         [Required]
-        public decimal PriceTravel { get; set; }
+        public decimal Price { get; set; }
 
         [ForeignKey("TravelId")]
         public virtual List<Order> Orders { get; set; }

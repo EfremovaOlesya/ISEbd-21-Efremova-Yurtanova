@@ -1,4 +1,4 @@
-﻿namespace TouristAgencyView
+﻿namespace IvanAgencyViewAdmin
 {
     partial class FormClient
     {
@@ -32,10 +32,6 @@
             this.textBoxFIO = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.textBoxBonus = new System.Windows.Forms.TextBox();
-            this.textBoxShtraf = new System.Windows.Forms.TextBox();
-            this.labelBonus = new System.Windows.Forms.Label();
-            this.labelShtraf = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelFIO
@@ -56,7 +52,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(103, 90);
+            this.buttonSave.Location = new System.Drawing.Point(93, 90);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 2;
@@ -74,47 +70,11 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // textBoxBonus
-            // 
-            this.textBoxBonus.Location = new System.Drawing.Point(55, 32);
-            this.textBoxBonus.Name = "textBoxBonus";
-            this.textBoxBonus.Size = new System.Drawing.Size(217, 20);
-            this.textBoxBonus.TabIndex = 4;
-            // 
-            // textBoxShtraf
-            // 
-            this.textBoxShtraf.Location = new System.Drawing.Point(55, 58);
-            this.textBoxShtraf.Name = "textBoxShtraf";
-            this.textBoxShtraf.Size = new System.Drawing.Size(217, 20);
-            this.textBoxShtraf.TabIndex = 5;
-            // 
-            // labelBonus
-            // 
-            this.labelBonus.AutoSize = true;
-            this.labelBonus.Location = new System.Drawing.Point(12, 35);
-            this.labelBonus.Name = "labelBonus";
-            this.labelBonus.Size = new System.Drawing.Size(37, 13);
-            this.labelBonus.TabIndex = 6;
-            this.labelBonus.Text = "Бонус";
-            // 
-            // labelShtraf
-            // 
-            this.labelShtraf.AutoSize = true;
-            this.labelShtraf.Location = new System.Drawing.Point(12, 61);
-            this.labelShtraf.Name = "labelShtraf";
-            this.labelShtraf.Size = new System.Drawing.Size(41, 13);
-            this.labelShtraf.TabIndex = 7;
-            this.labelShtraf.Text = "Штраф";
-            // 
             // FormClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 125);
-            this.Controls.Add(this.labelShtraf);
-            this.Controls.Add(this.labelBonus);
-            this.Controls.Add(this.textBoxShtraf);
-            this.Controls.Add(this.textBoxBonus);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxFIO);
@@ -134,10 +94,5 @@
         private System.Windows.Forms.TextBox textBoxFIO;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.TextBox textBoxBonus;
-        private System.Windows.Forms.TextBox textBoxShtraf;
-        private System.Windows.Forms.Label labelBonus;
-        private System.Windows.Forms.Label labelShtraf;
     }
 }
-

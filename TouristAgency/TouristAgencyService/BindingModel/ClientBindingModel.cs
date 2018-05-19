@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TouristAgencyService.BindingModel
+namespace IvanAgencyService.BindingModel
 {
     public class ClientBindingModel
     {
@@ -12,8 +12,8 @@ namespace TouristAgencyService.BindingModel
 
         public string ClientFIO { get; set; }
 
-        public string ClientLogin { get; set; }
+        public string Password { get; set; }
 
-        public string ClientPassword { get; set; }
+        public string Mail { get; set; }
     }
 }

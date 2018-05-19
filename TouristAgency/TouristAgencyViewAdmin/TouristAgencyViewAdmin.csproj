@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7051AAFC-BD59-4C55-A5D6-B6E96B8E6961}</ProjectGuid>
+    <ProjectGuid>{C2E9AAC8-7038-4E55-B47F-B6AB85A1B20A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TouristAgencyViewAdmin</RootNamespace>
-    <AssemblyName>TouristAgencyViewAdmin</AssemblyName>
+    <RootNamespace>IvanAgencyViewAdmin</RootNamespace>
+    <AssemblyName>IvanAgencyViewAdmin</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -88,17 +88,17 @@
     <Compile Include="FormClients.Designer.cs">
       <DependentUpon>FormClients.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCreateOrder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormCreateOrder.Designer.cs">
-      <DependentUpon>FormCreateOrder.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSendMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSendMail.Designer.cs">
+      <DependentUpon>FormSendMail.cs</DependentUpon>
     </Compile>
     <Compile Include="FormTour.cs">
       <SubType>Form</SubType>
@@ -112,70 +112,16 @@
     <Compile Include="FormTours.Designer.cs">
       <DependentUpon>FormTours.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTravel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormTravel.Designer.cs">
-      <DependentUpon>FormTravel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormTravels.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormTravels.Designer.cs">
-      <DependentUpon>FormTravels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormTravelTour.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormTravelTour.Designer.cs">
-      <DependentUpon>FormTravelTour.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormWorker.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormWorker.Designer.cs">
-      <DependentUpon>FormWorker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormWorkers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormWorkers.Designer.cs">
-      <DependentUpon>FormWorkers.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormClients.resx">
-      <DependentUpon>FormClients.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormCreateOrder.resx">
-      <DependentUpon>FormCreateOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTour.resx">
       <DependentUpon>FormTour.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormTours.resx">
-      <DependentUpon>FormTours.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormTravel.resx">
-      <DependentUpon>FormTravel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormTravels.resx">
-      <DependentUpon>FormTravels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormTravelTour.resx">
-      <DependentUpon>FormTravelTour.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormWorker.resx">
-      <DependentUpon>FormWorker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormWorkers.resx">
-      <DependentUpon>FormWorkers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -201,9 +147,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TouristAgencyService\TouristAgencyService.csproj">
-      <Project>{2904312E-622B-4983-B747-51A1B5DDB17E}</Project>
-      <Name>TouristAgencyService</Name>
+    <ProjectReference Include="..\IvanAgencyModel\IvanAgencyModel.csproj">
+      <Project>{9724d988-a71a-473c-9923-fae22410fb91}</Project>
+      <Name>IvanAgencyModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IvanAgencyService\IvanAgencyService.csproj">
+      <Project>{fda17084-ef4f-42e8-aa1b-dbbb0f1bd9ee}</Project>
+      <Name>IvanAgencyService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IvanAgencyViewClient\IvanAgencyViewClient.csproj">
+      <Project>{28f2cd64-65bc-482d-a3a4-0779f9d39f13}</Project>
+      <Name>IvanAgencyViewClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
