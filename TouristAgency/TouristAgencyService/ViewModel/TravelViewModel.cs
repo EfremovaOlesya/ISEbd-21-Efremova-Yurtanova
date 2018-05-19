@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TouristAgencyService.ViewModel
+namespace IvanAgencyService.ViewModel
 {
     public class TravelViewModel
     {
@@ -12,7 +12,7 @@ namespace TouristAgencyService.ViewModel
 
         public string TravelName { get; set; }
 
-        public decimal PriceTravel { get; set; }
+        public decimal Price { get; set; }
 
         public List<TravelTourViewModel> TravelTours { get; set; }
     }

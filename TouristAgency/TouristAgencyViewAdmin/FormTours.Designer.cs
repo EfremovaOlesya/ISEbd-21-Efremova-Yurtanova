@@ -1,4 +1,4 @@
-﻿namespace TouristAgencyView
+﻿namespace IvanAgencyViewAdmin
 {
     partial class FormTours
     {
@@ -102,7 +102,7 @@
             this.Name = "FormTours";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Туры";
-            this.Load += new System.EventHandler(this.FormComponents_Load);
+            this.Load += new System.EventHandler(this.FormTours_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

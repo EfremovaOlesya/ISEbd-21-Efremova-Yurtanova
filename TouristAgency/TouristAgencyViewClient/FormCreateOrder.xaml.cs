@@ -11,14 +11,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TouristAgencyService.BindingModel;
-using TouristAgencyService.Interfaces;
-using TouristAgencyService.ViewModel;
-using Unity;
 using Unity.Attributes;
+using Unity;
+using IvanAgencyService.Interfaces;
+using IvanAgencyService.ViewModel;
+using IvanAgencyService.BindingModel;
 
-
-namespace TouristAgencyViewClient
+namespace IvanAgencyViewClient
 {
     /// <summary>
     /// Логика взаимодействия для FormCreateOrder.xaml
@@ -28,59 +27,63 @@ namespace TouristAgencyViewClient
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly IClientService serviceC;
+        private readonly IClient serviceC;
 
-        private readonly ITravelService serviceT;
+        private readonly ITravel serviceT;
 
-        private readonly IMainService serviceM;
+        private readonly IMain serviceM;
 
-        public FormCreateOrder(IClientService serviceC, ITravelService serviceP, IMainService serviceM)
+
+        public FormCreateOrder(IClient serviceC, ITravel serviceT, IMain serviceM)
         {
             InitializeComponent();
             Loaded += FormCreateOrder_Load;
-            comboBoxTravel.SelectionChanged += comboBoxTravel_SelectedIndexChanged;
-
-            comboBoxTravel.SelectionChanged += new SelectionChangedEventHandler(comboBoxTravel_SelectedIndexChanged);
+            comboBoxProduct.SelectionChanged += comboBoxProduct_SelectedIndexChanged;
+            comboBoxProduct.SelectionChanged += new SelectionChangedEventHandler(comboBoxProduct_SelectedIndexChanged);
             this.serviceC = serviceC;
-            this.serviceT = serviceP;
+            this.serviceT = serviceT;
             this.serviceM = serviceM;
         }
+
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
             {
-                List<ClientViewModel> listC = serviceC.GetList();
-                if (listC != null)
+                List<ClientViewModel> listClient = serviceC.GetList();
+                if (listClient != null)
                 {
                     comboBoxClient.DisplayMemberPath = "ClientFIO";
                     comboBoxClient.SelectedValuePath = "Id";
-                    comboBoxClient.ItemsSource = listC;
-                    comboBoxTravel.SelectedItem = null;
+                    comboBoxClient.ItemsSource = listClient;
+                    comboBoxProduct.SelectedItem = null;
                 }
-                List<TravelViewModel> listT = serviceT.GetList();
-                if (listT != null)
+                List<TravelViewModel> listProduct = serviceT.GetList();
+                if (listProduct != null)
                 {
-                    comboBoxTravel.DisplayMemberPath = "TravelName";
-                    comboBoxTravel.SelectedValuePath = "Id";
-                    comboBoxTravel.ItemsSource = listT;
-                    comboBoxTravel.SelectedItem = null;
+                    comboBoxProduct.DisplayMemberPath = "TravelName";
+                    comboBoxProduct.SelectedValuePath = "Id";
+                    comboBoxProduct.ItemsSource = listProduct;
+                    comboBoxProduct.SelectedItem = null;
                 }
             }
             catch (Exception ex)
             {
+
+                MessageBox.Show(ex.InnerException.Message);
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void CalcSum()
         {
-            if (comboBoxTravel.SelectedItem != null)
+            if (comboBoxProduct.SelectedItem != null && !string.IsNullOrEmpty(textBoxDay.Text))
             {
                 try
                 {
-                    int id = ((TravelViewModel)comboBoxTravel.SelectedItem).Id;
-                    TravelViewModel travel = serviceT.GetElement(id);                 
-                    textBoxSum.Text = (travel.PriceTravel).ToString();
+                    int id = ((TravelViewModel)comboBoxProduct.SelectedItem).Id;
+                    TravelViewModel product = serviceT.GetElement(id);
+                    decimal day = Convert.ToDecimal(textBoxDay.Text);
+                    textBoxSum.Text = (product.Price * day).ToString();
                 }
                 catch (Exception ex)
                 {
@@ -88,8 +91,13 @@ namespace TouristAgencyViewClient
                 }
             }
         }
-       
-        private void comboBoxTravel_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void textBoxDay_TextChanged(object sender, EventArgs e)
+        {
+            CalcSum();
+        }
+
+        private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
@@ -101,22 +109,12 @@ namespace TouristAgencyViewClient
                 MessageBox.Show("Заполните поле Дни", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (string.IsNullOrEmpty(textBoxChildren.Text))
-            {
-                MessageBox.Show("Заполните поле Дети", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrEmpty(textBoxAdults.Text))
-            {
-                MessageBox.Show("Заполните поле Взрослые", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
             if (comboBoxClient.SelectedItem == null)
             {
-                MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Выберите себя", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (comboBoxTravel.SelectedItem == null)
+            if (comboBoxProduct.SelectedItem == null)
             {
                 MessageBox.Show("Выберите путешествие", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -126,8 +124,9 @@ namespace TouristAgencyViewClient
                 serviceM.CreateOrder(new OrderBindingModel
                 {
                     ClientId = ((ClientViewModel)comboBoxClient.SelectedItem).Id,
-                    TravelId = ((TravelViewModel)comboBoxTravel.SelectedItem).Id,                    
-                    Summ = Convert.ToInt32(textBoxSum.Text)
+                    TravelId = ((TravelViewModel)comboBoxProduct.SelectedItem).Id,
+                    Day = Convert.ToInt32(textBoxDay.Text),
+                    Summa = Convert.ToDecimal(textBoxSum.Text)
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
@@ -135,14 +134,23 @@ namespace TouristAgencyViewClient
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            DialogResult = false;
-            Close();
+            try
+            {
+                DialogResult = false;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

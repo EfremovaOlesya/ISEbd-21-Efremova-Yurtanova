@@ -7,25 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TouristAgencyService.Interfaces;
-using TouristAgencyService.ViewModel;
-using Unity;
 using Unity.Attributes;
+using Unity;
+using IvanAgencyService.Interfaces;
+using IvanAgencyService.ViewModel;
+using IvanAgencyService.BindingModel;
 
-
-namespace TouristAgencyView
+namespace IvanAgencyViewAdmin
 {
     public partial class FormMain : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly IMainService service;
+        private readonly IReport reportService;
 
-        public FormMain(IMainService service)
+        private readonly IMain service;
+
+        public FormMain(IMain service, IReport reportService)
         {
             InitializeComponent();
             this.service = service;
+            this.reportService = reportService;
         }
 
         private void LoadData()
@@ -38,6 +41,7 @@ namespace TouristAgencyView
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[2].Visible = false;
                     dataGridView.Columns[3].Visible = false;
                     dataGridView.Columns[5].Visible = false;
                     dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -55,45 +59,68 @@ namespace TouristAgencyView
             form.ShowDialog();
         }
 
-        private void компонентыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void турыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormTours>();
             form.ShowDialog();
         }
 
-        private void изделияToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormTravels>();
-            form.ShowDialog();
-        }
-
-       
-
-        private void сотрудникиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormWorkers>();
-            form.ShowDialog();
-        }
-
-        
-
-        private void buttonCreateOrder_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormCreateOrder>();
-            form.ShowDialog();
-            LoadData();
-        }
-
-       
-
-       
-
-       
-
         private void buttonRef_Click(object sender, EventArgs e)
         {
             LoadData();
         }
-    }
-}
 
+        private void списокПутешествийWordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "doc|*.doc|docx|*.docx"
+            };
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    reportService.SaveTravelPriceW(new ReportBindingModel
+                    {
+                        FileName = sfd.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void cписокПутешествийExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "xls|*.xls|xlsx|*.xlsx"
+            };
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    reportService.SaveTravelPriceE(new ReportBindingModel
+                    {
+                        FileName = sfd.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void отправкаПисемКлиентуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormSendMail>();
+            form.ShowDialog();
+        }
+    }
+
+}

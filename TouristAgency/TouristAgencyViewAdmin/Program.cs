@@ -4,16 +4,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TouristAgencyService;
-using TouristAgencyService.ImplementationsList;
-using TouristAgencyService.Interfaces;
-using TouristAgencyView;
+using IvanAgencyService;
+using IvanAgencyService.ImplementationBD;
+using IvanAgencyService.Interfaces;
 using Unity;
 using Unity.Lifetime;
 
-namespace TouristAgencyViewAdmin
+namespace IvanAgencyViewAdmin
 {
-
     static class Program
     {
         /// <summary>
@@ -31,12 +29,12 @@ namespace TouristAgencyViewAdmin
         public static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
-            currentContainer.RegisterType<DbContext, TouristDbContext>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IClientService, ClientService>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ITourService, TourService>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IWorkerService, WorkerService>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ITravelService, TravelService>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMainService, MainService>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<DbContext, IvanSuDbContext>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IClient, ClientService>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ITour, TourService>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IAdmin, AdminService>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ITravel, TravelService>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IMain, MainService>(new HierarchicalLifetimeManager());
 
             return currentContainer;
         }

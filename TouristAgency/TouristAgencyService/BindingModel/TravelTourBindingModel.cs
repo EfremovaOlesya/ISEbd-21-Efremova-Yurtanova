@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TouristAgencyService.BindingModel
+namespace IvanAgencyService.BindingModel
 {
     public class TravelTourBindingModel
     {
@@ -14,6 +14,6 @@ namespace TouristAgencyService.BindingModel
 
         public int TourId { get; set; }
 
-        public int Count { get; set; }
+        public decimal TourPrice { get; set; }
     }
 }

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TouristAgencyModel
+namespace IvanAgencyModel
 {
-   public class Order
+    public class Order
     {
         public int Id { get; set; }
 
@@ -15,28 +14,22 @@ namespace TouristAgencyModel
 
         public int TravelId { get; set; }
 
-        public int? WorkerId { get; set; }
+        public int? AdminId { get; set; }
 
-        public int Count { get; set; }
+        public int Day { get; set; }
 
-        public decimal Summ { get; set; }
+        public decimal Summa { get; set; }
 
-        public int DayCount { get; set; }
+        public StatusOfOrder Status { get; set; }
 
-        public int AdultsCount { get; set; }
+        public DateTime DateOfCreate { get; set; }
 
-        public int ChildrenCount { get; set; }
+        public DateTime? DateOfImplement { get; set; }
 
-        public PaymentState Status { get; set; }
-
-        public DateTime DateCreate { get; set; }
-
-        public DateTime? DateImplement { get; set; }
-
-        public virtual Client Client { get; set; }   
+        public virtual Client Client { get; set; }
 
         public virtual Travel Travel { get; set; }
 
-        public virtual Worker Worker { get; set; }
+        public virtual Admin Admin { get; set; }
     }
 }

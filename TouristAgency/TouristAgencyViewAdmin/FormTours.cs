@@ -7,27 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 using Unity.Attributes;
-using TouristAgencyService.Interfaces;
-using TouristAgencyService.ViewModel;
+using Unity;
+using IvanAgencyService.Interfaces;
+using IvanAgencyService.ViewModel;
 
-namespace TouristAgencyView
+namespace IvanAgencyViewAdmin
 {
     public partial class FormTours : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly ITourService service;
+        private readonly ITour service;
 
-        public FormTours(ITourService service)
+        public FormTours(ITour service)
         {
             InitializeComponent();
             this.service = service;
         }
 
-        private void FormComponents_Load(object sender, EventArgs e)
+        private void FormTours_Load(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -42,6 +42,7 @@ namespace TouristAgencyView
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                 
                 }
             }
             catch (Exception ex)

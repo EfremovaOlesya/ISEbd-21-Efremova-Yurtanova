@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TouristAgencyModel
+namespace IvanAgencyModel
 {
-   public class Tour
+    public class Tour
     {
         public int Id { get; set; }
 
@@ -20,6 +20,6 @@ namespace TouristAgencyModel
 
         [ForeignKey("TourId")]
         public virtual List<TravelTour> TravelTours { get; set; }
-
     }
 }
+

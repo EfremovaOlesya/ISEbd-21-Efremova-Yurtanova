@@ -11,12 +11,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TouristAgencyService.Interfaces;
-using TouristAgencyService.ViewModel;
-using Unity;
 using Unity.Attributes;
+using Unity;
+using IvanAgencyService.ViewModel;
+using IvanAgencyService.Interfaces;
 
-namespace TouristAgencyViewClient
+namespace IvanAgencyViewClient
 {
     /// <summary>
     /// Логика взаимодействия для FormTravelTour.xaml
@@ -28,14 +28,17 @@ namespace TouristAgencyViewClient
 
         public TravelTourViewModel Model { set { model = value; } get { return model; } }
 
-        private readonly ITourService service;
+        private readonly ITour service;
 
         private TravelTourViewModel model;
 
-        public FormTravelTour(ITourService service)
+        public FormTravelTour(ITour service)
         {
             InitializeComponent();
             Loaded += FormTravelTour_Load;
+            comboBoxComponent.SelectionChanged += comboBoxComponent_SelectedIndexChanged;
+
+            comboBoxComponent.SelectionChanged += new SelectionChangedEventHandler(comboBoxComponent_SelectedIndexChanged);
             this.service = service;
         }
 
@@ -67,25 +70,22 @@ namespace TouristAgencyViewClient
                         comboBoxComponent.SelectedItem = item;
                     }
                 }
-                textBoxCount.Text = model.Price.ToString();
             }
         }
 
         private void CalcSum()
         {
-            if (comboBoxComponent.SelectedItem != null && !string.IsNullOrEmpty(textBoxCount.Text))
+            try
             {
-                try
-                {
-                    int id = ((TourViewModel)comboBoxComponent.SelectedItem).Id;
-                    TourViewModel tour = service.GetElement(id);                   
-                    textBoxCount.Text = (tour.PriceTour).ToString();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                int id = ((TourViewModel)comboBoxComponent.SelectedItem).Id;
+                TourViewModel product = service.GetElement(id);
+                textBoxCount.Text = product.PriceTour.ToString();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private void comboBoxComponent_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,10 +94,16 @@ namespace TouristAgencyViewClient
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
-        {            
+        {
+
             if (comboBoxComponent.SelectedItem == null)
             {
                 MessageBox.Show("Выберите тур", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (textBoxCount.Text == null)
+            {
+                MessageBox.Show("Укажите цену", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             try
@@ -108,12 +114,8 @@ namespace TouristAgencyViewClient
                     {
                         TourId = Convert.ToInt32(comboBoxComponent.SelectedValue),
                         TourName = comboBoxComponent.Text,
-                        Price = Convert.ToInt32(textBoxCount.Text)
+                        TourPrice = Convert.ToDecimal(textBoxCount.Text)
                     };
-                }
-                else
-                {
-                    model.Price = Convert.ToInt32(textBoxCount.Text);
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
@@ -121,6 +123,8 @@ namespace TouristAgencyViewClient
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.InnerException.Message);
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -132,4 +136,3 @@ namespace TouristAgencyViewClient
         }
     }
 }
-

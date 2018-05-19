@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TouristAgencyService.ViewModel
+namespace IvanAgencyService.ViewModel
 {
-   public class OrderViewModel
+    public class OrderViewModel
     {
         public int Id { get; set; }
 
@@ -18,24 +18,18 @@ namespace TouristAgencyService.ViewModel
 
         public string TravelName { get; set; }
 
-        public int? WorkerId { get; set; }
+        public int? AdminId { get; set; }
 
-        public string WorkerFIO { get; set; }
+        public string AdminName { get; set; }
 
-        public int Count { get; set; }
+        public int Day { get; set; }
 
-        public decimal Summ { get; set; }
-
-        public int DayCount { get; set; }
-
-        public int AdultsCount { get; set; }
-
-        public int ChildrenCount { get; set; }
+        public decimal Summa { get; set; }
 
         public string Status { get; set; }
 
-        public string DateCreate { get; set; }
+        public string DateOfCreate { get; set; }
 
-        public string DateImplement { get; set; }
+        public string DateOfImplement { get; set; }
     }
 }

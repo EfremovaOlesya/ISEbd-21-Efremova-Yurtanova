@@ -7,89 +7,92 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 using Unity.Attributes;
-using TouristAgencyService.Interfaces;
-using TouristAgencyService.ViewModel;
-using TouristAgencyService.BindingModel;
+using Unity;
+using IvanAgencyService.Interfaces;
+using IvanAgencyService.ViewModel;
+using IvanAgencyService.BindingModel;
 
-namespace TouristAgencyView
+namespace IvanAgencyViewAdmin
 {
     public partial class FormTour : Form
     {
-            [Dependency]
-            public new IUnityContainer Container { get; set; }
+        [Dependency]
+        public new IUnityContainer Container { get; set; }
 
-            public int Id { set { id = value; } }
+        public int Id { set { id = value; } }
 
-            private readonly ITourService service;
+        private readonly ITour service;
 
-            private int? id;
+        private int? id;
 
-            public FormTour(ITourService service)
+        public FormTour(ITour service)
+        {
+            InitializeComponent();
+            this.service = service;
+        }
+
+        private void FormComponent_Load(object sender, EventArgs e)
+        {
+            if (id.HasValue)
             {
-                InitializeComponent();
-                this.service = service;
-            }
-
-            private void FormComponent_Load(object sender, EventArgs e)
-            {
-                if (id.HasValue)
-                {
-                    try
-                    {
-                        TourViewModel view = service.GetElement(id.Value);
-                        if (view != null)
-                        {
-                            textBoxName.Text = view.TourName;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-
-            private void buttonSave_Click(object sender, EventArgs e)
-            {
-                if (string.IsNullOrEmpty(textBoxName.Text))
-                {
-                    MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
                 try
                 {
-                    if (id.HasValue)
+                    TourViewModel view = service.GetElement(id.Value);
+                    if (view != null)
                     {
-                        service.UpdElement(new TourBindingModel
-                        {
-                            Id = id.Value,
-                            TourName = textBoxName.Text
-                        });
+                        textBoxName.Text = view.TourName;
+                        textBoxPriceTour.Text = view.PriceTour.ToString();
                     }
-                    else
-                    {
-                        service.AddElement(new TourBindingModel
-                        {
-                            TourName = textBoxName.Text
-                        });
-                    }
-                    MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    DialogResult = DialogResult.OK;
-                    Close();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
 
-            private void buttonCancel_Click(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxName.Text))
             {
-                DialogResult = DialogResult.Cancel;
+                MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {
+                if (id.HasValue)
+                {
+                    service.UpdElement(new TourBindingModel
+                    {
+                        Id = id.Value,
+                        TourName = textBoxName.Text,
+                        PriceTour = Convert.ToInt32(textBoxPriceTour.Text)
+                    });
+                }
+                else
+                {
+                    service.AddElement(new TourBindingModel
+                    {
+                        TourName = textBoxName.Text,
+                        PriceTour = Convert.ToInt32(textBoxPriceTour.Text)
+                    });
+                }
+                MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
                 Close();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
+}
 

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("TouristAgencyViewAdmin")]
+[assembly: AssemblyTitle("IvanAgencyViewAdmin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TouristAgencyViewAdmin")]
+[assembly: AssemblyProduct("IvanAgencyViewAdmin")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("7051aafc-bd59-4c55-a5d6-b6e96b8e6961")]
+[assembly: Guid("c2e9aac8-7038-4e55-b47f-b6ab85a1b20a")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //
