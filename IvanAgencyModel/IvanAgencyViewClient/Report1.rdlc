@@ -60,8 +60,15 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>        Отчет по путешествиям</Value>
+                    <Value xml:space="preserve">        </Value>
                     <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>Отчет по путешествиям</Value>
+                    <Style>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -71,7 +78,7 @@
             <Top>0.28787cm</Top>
             <Left>4.89162cm</Left>
             <Height>0.6cm</Height>
-            <Width>6.54812cm</Width>
+            <Width>8.0827cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -103,7 +110,7 @@
             <Top>1.06426cm</Top>
             <Left>3.75708cm</Left>
             <Height>0.6cm</Height>
-            <Width>8.55896cm</Width>
+            <Width>9.58958cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -542,78 +549,6 @@
               </Border>
             </Style>
           </Tablix>
-          <Textbox Name="Textbox2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Итого:</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Right</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>3.66063cm</Top>
-            <Left>8.34666cm</Left>
-            <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
-            <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox5">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>«Expr»</Value>
-                    <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Right</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>3.66063cm</Top>
-            <Left>10.91722cm</Left>
-            <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
-            <ZIndex>4</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
         </ReportItems>
         <Height>2in</Height>
         <Style />

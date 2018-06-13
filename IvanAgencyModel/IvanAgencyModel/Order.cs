@@ -1,29 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Runtime.Serialization;
 namespace IvanAgencyModel
 {
+    [DataContract]
     public class Order
     {
+        [DataMember]
         public int Id { get; set; }
 
+        [DataMember]
         public int ClientId { get; set; }
 
+        [DataMember]
         public int TravelId { get; set; }
 
+        [DataMember]
         public int? AdminId { get; set; }
 
+        [DataMember]
         public int Day { get; set; }
 
+        [DataMember]
         public decimal Summa { get; set; }
 
-        public StatusOfOrder Status { get; set; }
+        [DataMember]
+        public decimal SummaOplaty { get; set; }
 
+        [DataMember]
+        public int Bonus { get; set; }
+
+        [DataMember]
+        public string Status { get; set; }
+
+        [DataMember]
         public DateTime DateOfCreate { get; set; }
 
+        [DataMember]
         public DateTime? DateOfImplement { get; set; }
 
         public virtual Client Client { get; set; }
@@ -31,9 +43,5 @@ namespace IvanAgencyModel
         public virtual Travel Travel { get; set; }
 
         public virtual Admin Admin { get; set; }
-
-        public int Bonuses { get; set; }
-
-        public int Punishment { get; set; }
     }
 }

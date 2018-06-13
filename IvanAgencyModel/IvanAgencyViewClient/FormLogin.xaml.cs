@@ -1,32 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Unity.Attributes;
 using Unity;
+using IvanAgencyService.ViewModel;
+using IvanAgencyService.Interfaces;
 namespace IvanAgencyViewClient
 {
-    /// <summary>
-    /// Логика взаимодействия для FormLogin.xaml
-    /// </summary>
     public partial class FormLogin : Window
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        public FormLogin()
+
+        private readonly IClient service;
+
+        public FormLogin(IClient service)
         {
             InitializeComponent();
+            this.service = service;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -41,41 +32,25 @@ namespace IvanAgencyViewClient
                 MessageBox.Show("Заполните пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
-            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-J57HGAF\SQLEXPRESS;Initial Catalog=IvanSuDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("select * from Clients where ClientFIO = '" + textBoxFIO.Text + "' and Password = '" + textBoxPass.Text + "'", conn);          
-            SqlDataReader dt;
-            dt = cmd.ExecuteReader();
-            int count = 0;
-            
-            while(dt.Read())
+            List<ClientViewModel> list = service.GetList();
+            for (int i = 0; i < list.Count; i++)
             {
-                count += 1; 
-                
-            }
-           if(count ==1)
-            {
-                Close();
-                var form = Container.Resolve<FormMain>();
-                form.ShowDialog();
-               
-              
-            }
-            else
-            {
-                MessageBox.Show("Неверные данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-           
+                if (list[i].ClientFIO == textBoxFIO.Text && list[i].Password == textBoxPass.Text)
+                {
+                    App.id = list[i].Id;                  
+                    var form = Container.Resolve<FormMain>();
+                    form.ShowDialog();                   
+                }              
+            }          
+            textBoxFIO.Clear();
+            textBoxPass.Clear();
+            return;
         }
-
-        private void buttonCancel_Click(object sender, EventArgs e)
+       
+        private void buttonReg_Click(object sender, EventArgs e)
         {
-            DialogResult = false;
-            Close();
+            var form = Container.Resolve<FormReg>();
+            form.ShowDialog();
         }
-
-
-
     }
 }

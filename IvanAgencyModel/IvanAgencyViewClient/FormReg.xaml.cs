@@ -1,28 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Unity.Attributes;
 using Unity;
 using IvanAgencyService.Interfaces;
-using IvanAgencyService.ViewModel;
 using IvanAgencyService.BindingModel;
 using System.Text.RegularExpressions;
-
 namespace IvanAgencyViewClient
 {
-    /// <summary>
-    /// Логика взаимодействия для FormReg.xaml
-    /// </summary>
     public partial class FormReg : Window
     {       
         [Dependency]
@@ -39,8 +23,6 @@ namespace IvanAgencyViewClient
             InitializeComponent();
             this.service = service;
         }
-
-        
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
@@ -88,7 +70,7 @@ namespace IvanAgencyViewClient
                         Mail = mail
                 });
                 }
-                else
+                else              
                 {
                     service.AddElement(new ClientBindingModel
                     {
@@ -96,13 +78,12 @@ namespace IvanAgencyViewClient
                         Password = pass,
                         Mail = mail
                     });
-                }
+                }               
                 MessageBox.Show("Регистрация прошла успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);               
                 Close();
             }
             catch (Exception ex)
-            {
-                MessageBox.Show(ex.InnerException.Message);
+            {               
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
           
@@ -114,8 +95,5 @@ namespace IvanAgencyViewClient
             DialogResult = false;
             Close();
         }
-
-
-
     }
 }

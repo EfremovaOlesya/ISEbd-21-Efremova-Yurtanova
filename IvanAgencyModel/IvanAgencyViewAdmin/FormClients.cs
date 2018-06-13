@@ -41,7 +41,8 @@ namespace IvanAgencyViewAdmin
                 {
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -49,11 +50,6 @@ namespace IvanAgencyViewAdmin
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-     
-
-   
-
         private void buttonDel_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -74,7 +70,6 @@ namespace IvanAgencyViewAdmin
             }
         }
 
-       
+
     }
 }
-

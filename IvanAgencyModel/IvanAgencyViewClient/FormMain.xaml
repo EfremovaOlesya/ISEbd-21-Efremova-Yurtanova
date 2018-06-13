@@ -8,25 +8,26 @@
         Title="Туристическое агенство" Height="340" Width="1081.5" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="617*"/>
+            <ColumnDefinition Width="169*"/>
+            <ColumnDefinition Width="449*"/>
             <ColumnDefinition Width="457*"/>
         </Grid.ColumnDefinitions>
-        <Menu x:Name="menu" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="1047" Margin="10,0,0,0" Grid.ColumnSpan="2">
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="1047" Margin="10,0,0,0" Grid.ColumnSpan="3">
             <MenuItem Header="Справочники" Height="22" Width="105">
-                <MenuItem Header="Путешествия" HorizontalAlignment="Left" Height="28" Width="135" Margin="0,0,-21,0" Click="путешествияToolStripMenuItem_Click"/>
+                <MenuItem Header="Путешествия" Height="28" Margin="0,0,-12,0" Click="путешествияToolStripMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="Отчеты" Height="22" Width="100">
-                <MenuItem Header="Список туров doc" Height="32" Margin="0,0,-62,0" HorizontalAlignment="Left" Width="204" Click="списокТуровWToolStripMenuItem_Click"/>
-                <MenuItem Header="Список туров xls" HorizontalAlignment="Left" Height="31" Width="192" Margin="0,0,-50,0" Click="списокТуровEToolStripMenuItem_Click"/>
+                <MenuItem Header="Список туров" Height="32" Margin="0,0,-62,0" HorizontalAlignment="Left" Width="204" Click="списокТуровToolStripMenuItem_Click"/>
                 <MenuItem Header="Отчеты по путешествиям" Height="42" Margin="-3,0,-147,0" RenderTransformOrigin="1.215,0.743" HorizontalAlignment="Left" Width="325" Click="отчетToolStripMenuItem_Click"/>
 
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="dataGridViewMain" HorizontalAlignment="Left" Height="272" Margin="0,27,0,0" VerticalAlignment="Top" Width="880" IsReadOnly="True" Grid.ColumnSpan="2"/>
-        <Button x:Name="buttonCreateOrder" Content="Создать заказ" HorizontalAlignment="Left" Margin="292,48,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonCreateOrder_Click" Grid.Column="1"/>
-        <Button x:Name="buttonRef" Content="Обновить список" HorizontalAlignment="Left" Margin="292,254,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonRef_Click" Grid.Column="1"/>
-        <Button x:Name="buttonPayPolnost" Content="Оплатить полностью" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="292,194,0,0" Height="28" Click="buttonPayPolnost_Click" Grid.Column="1"/>
-        <Button x:Name="buttonPayChastich" Content="Оплатить частично" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="292,116,0,0" Height="28" Click="buttonPayChastich_Click" Grid.Column="1"/>
+        <DataGrid x:Name="dataGridViewMain" HorizontalAlignment="Left" Height="272" Margin="0,27,0,0" VerticalAlignment="Top" Width="880" IsReadOnly="True" Grid.ColumnSpan="3"/>
+        <Button x:Name="buttonCreateOrder" Content="Создать заказ" HorizontalAlignment="Left" Margin="292,48,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonCreateOrder_Click" Grid.Column="2"/>
+        <Button x:Name="buttonRef" Content="Обновить список" HorizontalAlignment="Left" Margin="292,254,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonRef_Click" Grid.Column="2"/>
+        <Button x:Name="buttonPayPolnost" Content="Оплатить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="292,188,0,0" Height="28" Click="buttonPay_Click" Grid.Column="2"/>
+        <Button x:Name="button" Content="Применить бонус" Grid.Column="2" HorizontalAlignment="Left" Margin="292,116,0,0" VerticalAlignment="Top" Width="138" Height="30" Click="buttonBonus_Click" />
+        <Button Content="Бэкап" Grid.Column="2" HorizontalAlignment="Left" Margin="341,10,0,0" VerticalAlignment="Top" Width="74" Height="29" Click="buttonBec_Click"/>
 
     </Grid>
 </Window>

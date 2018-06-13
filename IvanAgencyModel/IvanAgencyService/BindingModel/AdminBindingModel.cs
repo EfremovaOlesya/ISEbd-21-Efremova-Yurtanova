@@ -11,5 +11,7 @@ namespace IvanAgencyService.BindingModel
         public int Id { get; set; }
 
         public string AdminFIO { get; set; }
+
+        public string Password { get; set; }
     }
 }

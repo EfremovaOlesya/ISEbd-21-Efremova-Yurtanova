@@ -55,6 +55,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -95,12 +96,14 @@
     <Compile Include="ImplementationBD\ClientService.cs" />
     <Compile Include="ImplementationBD\MainService.cs" />
     <Compile Include="ImplementationBD\ReportService.cs" />
+    <Compile Include="ImplementationBD\SerializeService.cs" />
     <Compile Include="ImplementationBD\TourService.cs" />
     <Compile Include="ImplementationBD\TravelService.cs" />
     <Compile Include="Interfaces\IAdmin.cs" />
     <Compile Include="Interfaces\IClient.cs" />
     <Compile Include="Interfaces\IMain.cs" />
     <Compile Include="Interfaces\IReport.cs" />
+    <Compile Include="Interfaces\ISerialize.cs" />
     <Compile Include="Interfaces\ITour.cs" />
     <Compile Include="Interfaces\ITravel.cs" />
     <Compile Include="IvanSuDbContext.cs" />
@@ -124,21 +127,21 @@
     <Compile Include="Migrations\201805141603537_ClientMigration.Designer.cs">
       <DependentUpon>201805141603537_ClientMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805200937136_AddDiscount.cs" />
-    <Compile Include="Migrations\201805200937136_AddDiscount.Designer.cs">
-      <DependentUpon>201805200937136_AddDiscount.cs</DependentUpon>
+    <Compile Include="Migrations\201805201924507_AdminMigration.cs" />
+    <Compile Include="Migrations\201805201924507_AdminMigration.Designer.cs">
+      <DependentUpon>201805201924507_AdminMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805201311400_AddNewDiscount.cs" />
-    <Compile Include="Migrations\201805201311400_AddNewDiscount.Designer.cs">
-      <DependentUpon>201805201311400_AddNewDiscount.cs</DependentUpon>
+    <Compile Include="Migrations\201805242109511_OplataMigration.cs" />
+    <Compile Include="Migrations\201805242109511_OplataMigration.Designer.cs">
+      <DependentUpon>201805242109511_OplataMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805201702302_Discount.cs" />
-    <Compile Include="Migrations\201805201702302_Discount.Designer.cs">
-      <DependentUpon>201805201702302_Discount.cs</DependentUpon>
+    <Compile Include="Migrations\201805260843586_StatusDeleteMigration.cs" />
+    <Compile Include="Migrations\201805260843586_StatusDeleteMigration.Designer.cs">
+      <DependentUpon>201805260843586_StatusDeleteMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805201757010_AddPunishment.cs" />
-    <Compile Include="Migrations\201805201757010_AddPunishment.Designer.cs">
-      <DependentUpon>201805201757010_AddPunishment.cs</DependentUpon>
+    <Compile Include="Migrations\201805280538123_BonusMigration.cs" />
+    <Compile Include="Migrations\201805280538123_BonusMigration.Designer.cs">
+      <DependentUpon>201805280538123_BonusMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -150,7 +153,6 @@
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\ClientOrdersViewModel.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
-    <Compile Include="ViewModel\DiscountClientViewModel.cs" />
     <Compile Include="ViewModel\OrderViewModel.cs" />
     <Compile Include="ViewModel\TourViewModel.cs" />
     <Compile Include="ViewModel\TravelTourViewModel.cs" />
@@ -183,17 +185,17 @@
     <EmbeddedResource Include="Migrations\201805141603537_ClientMigration.resx">
       <DependentUpon>201805141603537_ClientMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805200937136_AddDiscount.resx">
-      <DependentUpon>201805200937136_AddDiscount.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805201924507_AdminMigration.resx">
+      <DependentUpon>201805201924507_AdminMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805201311400_AddNewDiscount.resx">
-      <DependentUpon>201805201311400_AddNewDiscount.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805242109511_OplataMigration.resx">
+      <DependentUpon>201805242109511_OplataMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805201702302_Discount.resx">
-      <DependentUpon>201805201702302_Discount.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805260843586_StatusDeleteMigration.resx">
+      <DependentUpon>201805260843586_StatusDeleteMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805201757010_AddPunishment.resx">
-      <DependentUpon>201805201757010_AddPunishment.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805280538123_BonusMigration.resx">
+      <DependentUpon>201805280538123_BonusMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

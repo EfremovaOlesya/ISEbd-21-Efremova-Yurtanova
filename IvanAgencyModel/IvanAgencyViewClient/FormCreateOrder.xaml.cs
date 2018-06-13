@@ -1,27 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Unity.Attributes;
 using Unity;
 using IvanAgencyService.Interfaces;
 using IvanAgencyService.ViewModel;
 using IvanAgencyService.BindingModel;
-
 namespace IvanAgencyViewClient
 {
-    /// <summary>
-    /// Логика взаимодействия для FormCreateOrder.xaml
-    /// </summary>
     public partial class FormCreateOrder : Window
     {
         [Dependency]
@@ -32,7 +19,6 @@ namespace IvanAgencyViewClient
         private readonly ITravel serviceT;
 
         private readonly IMain serviceM;
-
 
         public FormCreateOrder(IClient serviceC, ITravel serviceT, IMain serviceM)
         {
@@ -49,13 +35,13 @@ namespace IvanAgencyViewClient
         {
             try
             {
-                List<ClientViewModel> listClient = serviceC.GetList();
-                if (listClient != null)
+                ClientViewModel Client = serviceC.GetElement(App.id);
+                if (Client != null)
                 {
-                    comboBoxClient.DisplayMemberPath = "ClientFIO";
-                    comboBoxClient.SelectedValuePath = "Id";
-                    comboBoxClient.ItemsSource = listClient;
-                    comboBoxProduct.SelectedItem = null;
+
+                    textBoxClient.Text = Client.ClientFIO;
+                    textBoxClient.IsEnabled=false;
+              
                 }
                 List<TravelViewModel> listProduct = serviceT.GetList();
                 if (listProduct != null)
@@ -68,8 +54,6 @@ namespace IvanAgencyViewClient
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.InnerException.Message);
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -83,7 +67,7 @@ namespace IvanAgencyViewClient
                     int id = ((TravelViewModel)comboBoxProduct.SelectedItem).Id;
                     TravelViewModel product = serviceT.GetElement(id);
                     decimal day = Convert.ToDecimal(textBoxDay.Text);
-                    textBoxSum.Text = (product.Price * day).ToString();
+                    textBoxSum.Text = (product.Price * day).ToString();                            
                 }
                 catch (Exception ex)
                 {
@@ -109,7 +93,7 @@ namespace IvanAgencyViewClient
                 MessageBox.Show("Заполните поле Дни", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (comboBoxClient.SelectedItem == null)
+            if (textBoxClient.Text == null)
             {
                 MessageBox.Show("Выберите себя", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -123,10 +107,11 @@ namespace IvanAgencyViewClient
             {
                 serviceM.CreateOrder(new OrderBindingModel
                 {
-                    ClientId = ((ClientViewModel)comboBoxClient.SelectedItem).Id,
+                    ClientId = App.id,
                     TravelId = ((TravelViewModel)comboBoxProduct.SelectedItem).Id,
                     Day = Convert.ToInt32(textBoxDay.Text),
-                    Summa = Convert.ToDecimal(textBoxSum.Text)
+                    Summa = Convert.ToDecimal(textBoxSum.Text),
+                    Status = "Не_оплачен"
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
@@ -134,7 +119,6 @@ namespace IvanAgencyViewClient
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -148,7 +132,6 @@ namespace IvanAgencyViewClient
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
