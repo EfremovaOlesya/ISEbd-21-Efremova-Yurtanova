@@ -1,29 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Unity.Attributes;
 using Unity;
 using IvanAgencyService.Interfaces;
 using IvanAgencyService.ViewModel;
 using IvanAgencyService.BindingModel;
-using System.Windows.Forms;
-using System.Data;
-
 namespace IvanAgencyViewClient
 {
-    /// <summary>
-    /// Логика взаимодействия для FormTravel.xaml
-    /// </summary>
     public partial class FormTravel : Window
     {
         [Dependency]
@@ -61,7 +46,6 @@ namespace IvanAgencyViewClient
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.MessageBox.Show(ex.InnerException.Message);
                     System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
@@ -153,7 +137,7 @@ namespace IvanAgencyViewClient
         }
        
             private void buttonSave_Click(object sender, EventArgs e)
-        {
+            {
             if (string.IsNullOrEmpty(textBoxName.Text))
             {
                 System.Windows.MessageBox.Show("Заполните название", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -208,7 +192,6 @@ namespace IvanAgencyViewClient
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.ToString());
-
             }
         }
 

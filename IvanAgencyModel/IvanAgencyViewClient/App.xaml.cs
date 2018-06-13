@@ -16,24 +16,30 @@ namespace IvanAgencyViewClient
 {
     public partial class App : Application
     {
+        public static int id;
+
+
         /*App()
                    {
                        InitializeComponent();
-                   }*/
+                     */
 
         [STAThread]
         public static void Main()
         {
+
+
+
             var container = BuildUnityContainer();
 
             var application = new App();
             //application.InitializeComponent();
-            application.Run(container.Resolve<FormGlav>());
+            application.Run(container.Resolve<FormLogin>());
             //App app = new App();
             //app.Run(container.Resolve<FormMain>());
-          
-        }
 
+        }
+       
         public static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
@@ -44,6 +50,7 @@ namespace IvanAgencyViewClient
             currentContainer.RegisterType<ITravel, TravelService>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMain, MainService>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IReport, ReportService>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ISerialize, SerializeService>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

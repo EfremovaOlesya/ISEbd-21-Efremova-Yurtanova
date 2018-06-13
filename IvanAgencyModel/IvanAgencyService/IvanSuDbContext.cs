@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IvanAgencyModel;
-
 namespace IvanAgencyService
-{
-    
+{   
     public class IvanSuDbContext : DbContext
     {
         public IvanSuDbContext() 
@@ -31,11 +24,6 @@ namespace IvanAgencyService
 
         public virtual DbSet<TravelTour> TravelTours { get; set; }
 
-        
-        /// <summary>
-        /// Перегружаем метод созранения изменений. Если возникла ошибка - очищаем все изменения
-        /// </summary>
-        /// <returns></returns>
         public override int SaveChanges()
         {
             try

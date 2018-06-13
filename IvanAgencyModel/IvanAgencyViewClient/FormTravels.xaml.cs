@@ -1,26 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Unity.Attributes;
 using Unity;
 using IvanAgencyService.Interfaces;
 using IvanAgencyService.ViewModel;
-
 namespace IvanAgencyViewClient
 {
-    /// <summary>
-    /// Логика взаимодействия для FormTravels.xaml
-    /// </summary>
     public partial class FormTravels : Window
     {
         [Dependency]
@@ -55,7 +42,6 @@ namespace IvanAgencyViewClient
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.InnerException.Message);
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -85,7 +71,6 @@ namespace IvanAgencyViewClient
                 if (MessageBox.Show("Удалить запись?", "Внимание",
                 MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-
                     int id = ((TravelViewModel)dataGridViewProducts.SelectedItem).Id;
                     try
                     {

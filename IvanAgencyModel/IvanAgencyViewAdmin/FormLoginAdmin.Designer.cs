@@ -1,41 +1,39 @@
-﻿using System;
-
-namespace IvanAgencyViewAdmin
+﻿namespace IvanAgencyViewAdmin
 {
     partial class FormLoginAdmin
-{
-    /// <summary>
-    /// Required designer variable.
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
-
-    /// <summary>
-    /// Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing)
     {
-        if (disposing && (components != null))
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
         {
-            components.Dispose();
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
         }
-        base.Dispose(disposing);
-    }
 
-    #region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.labelLogin = new System.Windows.Forms.Label();
             this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.labelPassword = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.buttonEnter = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonReg = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelLogin
@@ -73,31 +71,31 @@ namespace IvanAgencyViewAdmin
             // 
             // buttonEnter
             // 
-            this.buttonEnter.Location = new System.Drawing.Point(33, 141);
-            this.buttonEnter.Name = "buttonEnter";
-            this.buttonEnter.Size = new System.Drawing.Size(92, 31);
-            this.buttonEnter.TabIndex = 4;
-            this.buttonEnter.Text = "Вход";
-            this.buttonEnter.UseVisualStyleBackColor = true;
-            this.buttonEnter.Click += new System.EventHandler(this.buttonEnter_Click);
+            this.buttonSave.Location = new System.Drawing.Point(186, 148);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(92, 31);
+            this.buttonSave.TabIndex = 4;
+            this.buttonSave.Text = "Вход";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(164, 141);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(92, 31);
-            this.buttonCancel.TabIndex = 5;
-            this.buttonCancel.Text = "Отмена";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            this.buttonReg.Location = new System.Drawing.Point(33, 148);
+            this.buttonReg.Name = "buttonReg";
+            this.buttonReg.Size = new System.Drawing.Size(92, 31);
+            this.buttonReg.TabIndex = 5;
+            this.buttonReg.Text = "Регистрация";
+            this.buttonReg.UseVisualStyleBackColor = true;
+            this.buttonReg.Click += new System.EventHandler(this.buttonReg_Click);
             // 
             // FormLoginAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(289, 184);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonEnter);
+            this.ClientSize = new System.Drawing.Size(315, 209);
+            this.Controls.Add(this.buttonReg);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.textBoxLogin);
@@ -107,19 +105,18 @@ namespace IvanAgencyViewAdmin
             this.ResumeLayout(false);
             this.PerformLayout();
 
-    }
+        }
 
-        
+
 
         #endregion
 
         private System.Windows.Forms.Label labelLogin;
-    private System.Windows.Forms.TextBox textBoxLogin;
-    private System.Windows.Forms.Label labelPassword;
-    private System.Windows.Forms.TextBox textBoxPassword;
-    private System.Windows.Forms.Button buttonEnter;
-        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.TextBox textBoxLogin;
+        private System.Windows.Forms.Label labelPassword;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonReg;
     }
 }
-
 

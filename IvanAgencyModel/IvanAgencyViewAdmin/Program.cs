@@ -24,7 +24,7 @@ namespace IvanAgencyViewAdmin
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(container.Resolve<FormMainAdmin>());
+            Application.Run(container.Resolve<FormLoginAdmin>());
         }
         public static IUnityContainer BuildUnityContainer()
         {
@@ -36,6 +36,7 @@ namespace IvanAgencyViewAdmin
             currentContainer.RegisterType<ITravel, TravelService>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMain, MainService>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IReport, ReportService>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ISerialize, SerializeService>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

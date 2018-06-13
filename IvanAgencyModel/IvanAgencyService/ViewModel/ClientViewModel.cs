@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace IvanAgencyService.ViewModel
 {
     public class ClientViewModel
@@ -15,7 +10,5 @@ namespace IvanAgencyService.ViewModel
         public string Mail { get; set; }
 
         public string ClientFIO { get; set; }
-
-        public List<DiscountClientViewModel> DiscountClients { get; set; }
     }
 }

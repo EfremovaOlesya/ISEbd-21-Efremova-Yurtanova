@@ -1,26 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Unity.Attributes;
 using Unity;
 using IvanAgencyService.ViewModel;
 using IvanAgencyService.Interfaces;
-
 namespace IvanAgencyViewClient
 {
-    /// <summary>
-    /// Логика взаимодействия для FormTravelTour.xaml
-    /// </summary>
     public partial class FormTravelTour : Window
     {
         [Dependency]
@@ -37,7 +24,6 @@ namespace IvanAgencyViewClient
             InitializeComponent();
             Loaded += FormTravelTour_Load;
             comboBoxComponent.SelectionChanged += comboBoxComponent_SelectedIndexChanged;
-
             comboBoxComponent.SelectionChanged += new SelectionChangedEventHandler(comboBoxComponent_SelectedIndexChanged);
             this.service = service;
         }
@@ -85,7 +71,6 @@ namespace IvanAgencyViewClient
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         private void comboBoxComponent_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,7 +80,6 @@ namespace IvanAgencyViewClient
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-
             if (comboBoxComponent.SelectedItem == null)
             {
                 MessageBox.Show("Выберите тур", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -43,6 +43,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
@@ -124,11 +127,17 @@
     <Compile Include="FormClientOrders.xaml.cs">
       <DependentUpon>FormClientOrders.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FormGlav.xaml.cs">
-      <DependentUpon>FormGlav.xaml</DependentUpon>
+    <Compile Include="FormLetter.xaml.cs">
+      <DependentUpon>FormLetter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormLetterPDF.xaml.cs">
+      <DependentUpon>FormLetterPDF.xaml</DependentUpon>
     </Compile>
     <Compile Include="FormLogin.xaml.cs">
       <DependentUpon>FormLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormPay.xaml.cs">
+      <DependentUpon>FormPay.xaml</DependentUpon>
     </Compile>
     <Compile Include="FormReg.xaml.cs">
       <DependentUpon>FormReg.xaml</DependentUpon>
@@ -142,7 +151,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FormGlav.xaml">
+    <Page Include="FormLetter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormLetterPDF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -165,6 +178,10 @@
       <DependentUpon>FormMain.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="FormPay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FormReg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -221,6 +238,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IvanAgencyModel\IvanAgencyModel.csproj">
+      <Project>{9724D988-A71A-473C-9923-FAE22410FB91}</Project>
+      <Name>IvanAgencyModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IvanAgencyService\IvanAgencyService.csproj">
       <Project>{FDA17084-EF4F-42E8-AA1B-DBBB0F1BD9EE}</Project>
       <Name>IvanAgencyService</Name>

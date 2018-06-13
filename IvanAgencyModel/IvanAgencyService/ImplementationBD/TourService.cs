@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IvanAgencyModel;
 using IvanAgencyService.BindingModel;
 using IvanAgencyService.Interfaces;
 using IvanAgencyService.ViewModel;
-
 namespace IvanAgencyService.ImplementationBD
 {
     public class TourService : ITour

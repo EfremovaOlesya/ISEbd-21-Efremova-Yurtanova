@@ -11,6 +11,7 @@
             <DockPanel.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionColorKey}}"/>
             </DockPanel.Background>
+            <Button Content="На почту" Height="24" VerticalAlignment="Top" Width="104" Margin="570,32,0,0" Click="buttonMail_Click"/>
         </DockPanel>
         <Label Content="С" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,31,0,0" RenderTransformOrigin="0.471,0.288" Height="35" Width="30"/>
         <DatePicker x:Name="dateTimePickerFrom" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,31,0,0" Width="126" Height="24" DisplayDateStart="1753-01-01" DisplayDateEnd="9998-12-31" SelectedDateFormat="Long"/>
@@ -19,7 +20,6 @@
         <WindowsFormsHost HorizontalAlignment="Left" Height="353" VerticalAlignment="Top" Width="792" Margin="0,66,0,0">
             <rv:ReportViewer x:Name ="reportViewer"/>
         </WindowsFormsHost>
-        <Button x:Name="buttonMake" Content="Сформировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="111" Margin="459,31,0,0" Height="24" Click="buttonMake_Click"/>
-        <Button x:Name="buttonToPdf" Content="в PDF" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="603,31,0,0" Height="24" Click="buttonToPdf_Click"/>
+        <Button x:Name="buttonMake" Content="Сформировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="459,31,0,0" Height="24" Click="buttonMake_Click"/>
     </Grid>
 </Window>

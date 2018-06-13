@@ -25,7 +25,8 @@ namespace IvanAgencyService.ImplementationBD
                 .Select(rec => new AdminViewModel
                 {
                     Id = rec.Id,
-                    AdminFIO = rec.AdminFIO
+                    AdminFIO = rec.AdminFIO,
+                    Password = rec.Password
                 })
                 .ToList();
             return result;
@@ -39,7 +40,8 @@ namespace IvanAgencyService.ImplementationBD
                 return new AdminViewModel
                 {
                     Id = element.Id,
-                    AdminFIO = element.AdminFIO
+                    AdminFIO = element.AdminFIO,
+                    Password = element.Password
                 };
             }
             throw new Exception("Элемент не найден");
@@ -54,7 +56,8 @@ namespace IvanAgencyService.ImplementationBD
             }
             context.Admins.Add(new Admin
             {
-                AdminFIO = model.AdminFIO
+                AdminFIO = model.AdminFIO,
+                Password = model.Password
             });
             context.SaveChanges();
         }
@@ -73,6 +76,7 @@ namespace IvanAgencyService.ImplementationBD
                 throw new Exception("Элемент не найден");
             }
             element.AdminFIO = model.AdminFIO;
+            element.Password = model.Password;
             context.SaveChanges();
         }
 

@@ -1,17 +1,19 @@
 ﻿using IvanAgencyService.BindingModel;
 using IvanAgencyService.Interfaces;
+using IvanAgencyService.ViewModel;
+using IvanAgencyViewClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 using Unity.Attributes;
-
 namespace IvanAgencyViewAdmin
 {
     public partial class Form1 : Form
@@ -19,13 +21,46 @@ namespace IvanAgencyViewAdmin
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly IReport reportService;
+        private readonly ISerialize serviceS;
 
         private readonly IMain service;
-        public Form1()
+
+        public Form1(IMain service, ISerialize serviceS)
         {
             InitializeComponent();
+            this.service = service;
+            this.serviceS = serviceS;
         }
+
+
+        private void FormMain1_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            try
+            {
+                List<OrderViewModel> list = service.GetList();
+                if (list != null)
+                {
+                    dataGridView.DataSource = list;
+                    dataGridView.Columns[0].Visible = false;
+                    dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[3].Visible = false;
+                    dataGridView.Columns[5].Visible = false;
+                    dataGridView.Columns[6].Visible = false;
+                    dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void турыToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -39,50 +74,16 @@ namespace IvanAgencyViewAdmin
             form.ShowDialog();
         }
 
-        private void wordToolStripMenuItem_Click(object sender, EventArgs e)
+        private void orderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog
-            {
-                Filter = "doc|*.doc|docx|*.docx"
-            };
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    reportService.SaveTravelPriceW(new ReportBindingModel
-                    {
-                        FileName = sfd.FileName
-                    });
-                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            var form = Container.Resolve<FormClientOrder>();
+            form.ShowDialog();
         }
 
-        private void excelToolStripMenuItem_Click(object sender, EventArgs e)
+        private void getOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog
-            {
-                Filter = "xls|*.xls|xlsx|*.xlsx"
-            };
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    reportService.SaveTravelPriceE(new ReportBindingModel
-                    {
-                        FileName = sfd.FileName
-                    });
-                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            var form = Container.Resolve<FormOrderPay>();
+            form.ShowDialog();
         }
 
         private void написатьКлиентуToolStripMenuItem_Click(object sender, EventArgs e)
@@ -91,10 +92,41 @@ namespace IvanAgencyViewAdmin
             form.ShowDialog();
         }
 
-        private void блокировкаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonBonus_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormBlockClient>();
-            form.ShowDialog();
+            if (dataGridView.SelectedRows.Count == 1)
+            {
+                var form = Container.Resolve<FormBonus>();
+                form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                form.ShowDialog();
+                LoadData();
+            }
+        }
+
+        private void buttonRef_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void buttonBec_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog { Filter = "Json files (*.json)|*.json|Word files (*.doc)|*.doc" };
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    StreamWriter writer = new StreamWriter(sfd.FileName);
+
+                    writer.WriteLine(serviceS.GetData());
+                    writer.Dispose();
+
+                    MessageBox.Show("Бэкап БД проведен успешно", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

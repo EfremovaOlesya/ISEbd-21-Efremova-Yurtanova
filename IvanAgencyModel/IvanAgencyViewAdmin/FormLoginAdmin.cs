@@ -1,4 +1,5 @@
 ﻿using IvanAgencyService.Interfaces;
+using IvanAgencyService.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,52 +11,53 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 using Unity.Attributes;
-
 namespace IvanAgencyViewAdmin
 {
     public partial class FormLoginAdmin : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        public FormLoginAdmin()
+
+        private readonly IAdmin service;
+
+        public FormLoginAdmin(IAdmin service)
         {
             InitializeComponent();
-            
-        }
-        private void buttonEnter_Click(object sender, EventArgs e)
-        {
-            
-            try
-            {
-                if (textBoxLogin.Text == "admin")
-                {
-                    if (textBoxPassword.Text == "123")
-                    {
-                        
-                        var form = Container.Resolve<FormMainAdmin>();
-                        form.ShowDialog();
-                        
-                    }
-                }
-                
-                else
-                {
-                    MessageBox.Show("Неправильный логин или пароль", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    textBoxLogin.Clear();
-                    textBoxPassword.Clear();
-                }
-                
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            this.service = service;
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (string.IsNullOrEmpty(textBoxLogin.Text))
+            {
+                MessageBox.Show("Заполните логин", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(textBoxPassword.Text))
+            {
+                MessageBox.Show("Заполните пароль", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            List<AdminViewModel> list = service.GetList();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].AdminFIO == textBoxLogin.Text && list[i].Password == textBoxPassword.Text)
+                {
+                    var form = Container.Resolve<Form1>();
+                    form.ShowDialog();
+                }
+            }
+            textBoxLogin.Clear();
+            textBoxPassword.Clear();
+            return;
+        }
+
+        private void buttonReg_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReg>();
+            form.ShowDialog();
         }
     }
 }
